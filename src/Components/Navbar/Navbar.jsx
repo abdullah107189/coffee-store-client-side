@@ -11,10 +11,10 @@ const Navbar = () => {
                 </div>
                 <div>
                     <ul className='flex gap-5'>
-                        <Link to={'/'} className='border-2 rounded hover:rounded-full bg-transparent border-white transform duration-300 px-5 py-1 hover:bg-[#E3B577] hover:border-[#331a15]'>Home</Link>
-                        <Link to={'/'} className='border-2 rounded hover:rounded-full bg-transparent border-white transform duration-300 px-5 py-1 hover:bg-[#E3B577] hover:border-[#331a15]'>About</Link>
-                        <Link to={'/'} className='border-2 rounded hover:rounded-full bg-transparent border-white transform duration-300 px-5 py-1 hover:bg-[#E3B577] hover:border-[#331a15]'>Contact</Link>
-                        <Link to={'/'} className='border-2 rounded hover:rounded-full bg-transparent border-white transform duration-300 px-5 py-1 hover:bg-[#E3B577] hover:border-[#331a15]'>All Product</Link>
+                        <Link to={'/'} className='PriBtn'>Home</Link>
+                        <Link to={'/'} className='PriBtn'>About</Link>
+                        <Link to={'/'} className='PriBtn'>Contact</Link>
+                        <Link to={'/'} className='PriBtn'>All Product</Link>
                     </ul>
                 </div>
             </div>
