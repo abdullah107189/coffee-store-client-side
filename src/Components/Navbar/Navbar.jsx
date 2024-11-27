@@ -1,6 +1,6 @@
 import './navbar.css'
 import logo from '../../assets/more/logo1.png'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 const Navbar = () => {
     return (
         <div className='bg-image text-white sticky top-0 z-50'>
@@ -11,11 +11,11 @@ const Navbar = () => {
                 </div>
                 <div>
                     <ul className='flex gap-5'>
-                        <Link to={'/'} className='PriBtn'>Home</Link>
-                        <Link to={'/'} className='PriBtn'>About</Link>
-                        <Link to={'/'} className='PriBtn'>Contact</Link>
-                        <Link to={'/allProducts'} className='PriBtn'>All Products</Link>
-                        <Link to={'/addProducts'} className='PriBtn'>Add Products</Link>
+                        <NavLink to={'/'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>Home</NavLink>
+                        <NavLink to={'/'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>About</NavLink>
+                        <NavLink to={'/'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>Contact</NavLink>
+                        <NavLink to={'/allProducts'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>All Products</NavLink>
+                        <NavLink to={'/addProducts'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>Add Products</NavLink>
                     </ul>
                 </div>
             </div>
