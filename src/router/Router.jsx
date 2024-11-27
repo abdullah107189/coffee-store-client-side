@@ -3,6 +3,7 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
 import AllProducts from "../pages/AllProducts/AllProducts";
 import AddProducts from "../pages/AddProducts/AddProducts";
+import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
 
 const Router = createBrowserRouter([
     {
@@ -18,8 +19,13 @@ const Router = createBrowserRouter([
                 element: <AllProducts></AllProducts>
             },
             {
-                path:'/addProducts',
-                element:<AddProducts></AddProducts>
+                path: '/addProducts',
+                element: <AddProducts></AddProducts>
+            },
+            {
+                path: '/updateCoffee/:id',
+                element: <UpdateProduct></UpdateProduct>,
+                loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
             }
         ]
     },

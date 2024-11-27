@@ -12,8 +12,6 @@ const Navbar = () => {
                 <div>
                     <ul className='flex gap-5'>
                         <NavLink to={'/'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>Home</NavLink>
-                        <NavLink to={'/'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>About</NavLink>
-                        <NavLink to={'/'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>Contact</NavLink>
                         <NavLink to={'/allProducts'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>All Products</NavLink>
                         <NavLink to={'/addProducts'} className={({ isActive }) => (isActive ? 'rancho-regular border-2 rounded-full transform duration-300 px-5 py-1 bg-[#E3B577] border-[#331a15] text-[#331a15] ' : 'PriBtn')}>Add Products</NavLink>
                     </ul>
