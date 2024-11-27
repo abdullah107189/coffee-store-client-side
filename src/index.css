@@ -5,18 +5,20 @@
 @tailwind utilities;
 
 @layer components {
-
     .PriBtn{ 
         @apply rancho-regular border-2 rounded hover:rounded-full bg-transparent border-white transform duration-300 px-5 py-1 hover:bg-[#E3B577] hover:border-[#331a15] hover:text-[#331a15]
     }
     .outLinePriBtn{
-        @apply border-2 rounded  bg-transparent transition-all transform duration-500 px-5 py-1 hover:rounded-full bg-[#E3B577] border-[#331a15] hover:text-[#331a15]
+        @apply border-2 hover:border-white bg-transparent font-semibold hover:text-white transform duration-300 px-6 py-1 rounded-full hover:bg-[#E3B577] rancho-regular border-[#331a15] text-[#331a15]
     }
 
 }
 
 * {
     box-sizing: border-box;
+}
+body{
+    overflow-y: scroll;
 }
 
 .rancho-regular {
