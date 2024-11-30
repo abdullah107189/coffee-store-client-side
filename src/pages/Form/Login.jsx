@@ -1,26 +1,54 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-
-    // Handle form submission
+    const { logInUserUsingPassAndEmail } = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Get form data directly from e.target
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        // Displaying values (for demonstration, you can handle form logic here)
-        console.log('Email:', email);
-        console.log('Password:', password);
 
-        // Here you can add logic to validate the form, send data to API, etc.
+        logInUserUsingPassAndEmail(email, password)
+            .then(res => {
+                if (res.user) {
+                    const lastLoginDate = res?.user?.metadata?.lastSignInTime;
+                    Swal.fire({
+                        title: 'Login Success',
+                        text: "Well come to our web page...",
+                        icon: 'success'
+                    })
+                    fetch('http://localhost:5000/users', {
+                        method: 'PATCH',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email, lastLoginDate: lastLoginDate })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            Swal.fire({
+                                title: 'Login Success',
+                                text: "Well come to our web page...",
+                                icon: 'success'
+                            })
+                        })
+                    navigate('/')
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
     };
 
-    // Handle Google login (you can integrate Firebase or any other logic)
     const handleGoogleLogin = () => {
         console.log("Google login clicked");
-        // Implement Google login logic here
     };
 
     return (
@@ -75,7 +103,7 @@ const Login = () => {
 
                 {/* Redirect to Register Link */}
                 <p className="mt-4 text-center text-sm text-gray-600">
-                    Don&apos;t have an account? <a href="/reg" className="text-[#E3B577]">Create one</a>
+                    Don&apos;t have an account? <Link to={'/reg'} className="text-[#E3B577]">Create one</Link>
                 </p>
             </div>
         </div>

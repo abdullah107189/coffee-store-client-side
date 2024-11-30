@@ -1,23 +1,61 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 const Register = () => {
-
-    // Handle form submission
+    const { CreateUserUsingPassAndEmail, photoAndNameUpdate, setUser } = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // Get form data directly from e.target
         const name = e.target.name.value;
+        const photoURL = e.target.photoURL.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const confirmPassword = e.target.confirmPassword.value;
+        if (password.length < 6) {
+            return toast.error('minimum 6 letter!')
+        }
+        CreateUserUsingPassAndEmail(email, password)
+            .then(res => {
+                if (res.user) {
+                    const accountCreatedDate = res.user.metadata.createdAt
+                    const userInfo = { name, photoURL, email, accountCreatedDate }
 
-        // Displaying values (for demonstration, you can handle form logic here)
-        console.log('Name:', name);
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('Confirm Password:', confirmPassword);
+                    photoAndNameUpdate(name, photoURL)
+                        .then(() => {
+                            fetch('http://localhost:5000/users', {
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(userInfo)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.insertedId) {
+                                        setUser((prev) => { return { ...prev, photoURL, displayName:name } })
+                                        Swal.fire({
+                                            title: 'Login Success',
+                                            text: "Well come to our web page...",
+                                            icon: 'success'
+                                        })
+                                    }
 
-        // Here you can add logic to validate the form, send data to API, etc.
+                                })
+                                .catch(error => {
+                                    console.log(error.message);
+                                })
+                            navigate('/')
+                        })
+                        .catch(err => console.log(err))
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
     };
 
     return (
@@ -89,7 +127,7 @@ const Register = () => {
                     </button>
                 </div>
                 <p className="mt-4 text-center text-sm text-gray-600">
-                    Already have an account? <a href="/login" className="text-[#E3B577]">Login</a>
+                    Already have an account? <Link to={'/login'} className="text-[#E3B577]">Login</Link>
                 </p>
             </div>
         </div>

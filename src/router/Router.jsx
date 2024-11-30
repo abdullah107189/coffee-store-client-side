@@ -6,6 +6,7 @@ import AddProducts from "../pages/AddProducts/AddProducts";
 import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
 import Register from "../pages/Form/Register";
 import Login from "../pages/Form/Login";
+import AllUsers from "../pages/AllUsers/AllUsers";
 
 const Router = createBrowserRouter([
     {
@@ -30,12 +31,17 @@ const Router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
             },
             {
-                path:'reg',
-                element:<Register></Register>
+                path: 'reg',
+                element: <Register></Register>
             },
             {
-                path:'/login',
-                element:<Login></Login>
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/allUsers',
+                element: <AllUsers></AllUsers>,
+                loader: () => fetch('http://localhost:5000/users')
             }
 
         ]
